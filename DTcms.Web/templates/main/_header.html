@@ -1,0 +1,36 @@
+﻿<div class="header">
+			<div class="mar-auto layout">
+				<h1><a href="<%linkurl("index")%>" title="<%=config.webname%>"><img src="<%templateskin%>/images/logo.png" title="<%=config.webname%>"></a></h1>
+				<div class="header-nav layout">
+					<a href="<%linkurl("index")%>" title="" class="on">家园首页</a>
+                    <%set DataTable downCList1=get_category_child_list("down",0)%>
+                        <%loop dcdr1 downCList1%>
+                        <%if({dcdr1[id]}!="55")%>
+                         <%if({dcdr1[id]}=="54")%>
+                         <a href="<%linkurl("index1","28")%>" title="{dcdr1[title]}">{dcdr1[title]}</a>
+                         <%else%>
+                    <a href="<%linkurl("news_list",{dcdr1[id]})%>" title="{dcdr1[title]}">{dcdr1[title]}</a>
+                     <%/if%>
+                      <%/if%>
+                        <%/loop%> 
+				</div>
+			</div>
+		</div>
+		<!--header end-->
+		<div class="nav">
+			<div class="mar-auto layout">
+				<div class="date">
+					<span id="dateName"></span>
+				</div>
+				<div class="notice layout"><span class="font">公告：</span><marquee loop="-1" direction="right" scrollamount="2">
+                <%set DataTable focusNews=get_article_list("down", 55, 8, "status=0")%>
+          <%foreach(DataRow dr in focusNews.Rows)%>
+                <a href="<%linkurl("news_show",{dr[id]})%>">{dr[title]}<span class="time">[<%datetostr({dr[add_time]},yyyy-MM-dd)%>]</span></a>
+          <%/foreach%>
+
+                </marquee></div>
+			</div>
+		</div>
+
+
+ 

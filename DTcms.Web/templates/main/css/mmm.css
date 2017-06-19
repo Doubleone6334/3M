@@ -1,0 +1,74 @@
+/*中间部分*/
+.content{overflow:hidden;margin:20px auto;border-radius:5px;border:1px solid #dbdad9;border-top:none;width:980px;background-color:#fff;}
+/*中间顶部*/
+.content-top{border-bottom:1px solid #dbdad9;height:64px;}
+.content-top-search{float:right;padding:10px 15px 0 0;}
+.content-top-search input{border:1px solid #b0b0b0;border-right:none;padding-left:45px;width:250px;height:39px;color:#b0b0b0;font-size:16px;background:url(../images/icon.png) no-repeat 10px 7px;line-height:39px;}
+.content-top-search input:focus{border:1px solid #1696C4;border-right:none;outline:medium;}
+.content-top-search .sea-color{color:#1696C4;background:url(../images/icon.png) no-repeat 10px -74px;transition:all 0.3s ease;-moz-transition:all 0.3s ease;-webkit-transition:all 0.3s ease;-o-transition:all 0.3s ease;-ms-transition:all 0.3s ease;}
+.content-top-search button{height:43px;width:100px;border:none;background-color:#33424d;color:#fff;font-size:17px;}
+.content-top-search button:hover{background-color:#5C7181;}
+.content-top-tab{float:left;}
+.content-top-tab ul li{float:left;margin:0 0 -1px 15px;width:80px;text-align:center;}
+.content-top-tab ul li a{font-size:16px;height:64px;line-height:65px;}
+.content-top-tab ul li a:hover{color:#ff8101;}
+.content-top-tab ul li.on{background:url(../images/tab-bott.gif) no-repeat center bottom ;}
+.content-top-tab ul li.on a{color:#FF8101;}
+/*中间中间*/
+.content-con{margin:0 auto;position:relative;background-color:#f5f4f4;padding:30px 0px 20px 40px;}
+.summary{background:rgba(0,0,0,0.7);}
+.listbox{float:left;margin-bottom:30px;margin-right:30px;display:inline;background-color:#fff;padding:10px;_padding:10px 10px 8px 10px ;background:#f6f6f6;width:260px;height:240px;position:relative;}
+.listimg{float:left;width:260px;height:165px;position:relative;overflow:hidden;}
+.listimg img{background:#333;width:260px;height:165px;top:0;left:0;position:absolute;}
+.summary{width:260px;height:165px;top:165px;left:0;position:absolute;}
+.summarytxt{margin:5px 10px;width:250px;height:auto;line-height:22px;font-size:12px;color:#cfcfcf;}
+.listinfo{_margin-bottom:3px;padding-left:10px;width:250px;line-height:22px;font-size:12px;}
+.listinfo a{font-size:12px;}
+.listtitle{float:left;margin-top:8px;_margin-top:-2px;width:250px;font-size:14px;}
+.listtitle a{font-size:14px;}
+.listtitle a:hover{color:#ff8101;}
+.listtag{float:left;padding-left:18px;background:url(../images/taglist.gif) 0 5px no-repeat;width:232px;color:#999;}
+.listtag .tag{margin:0 8px 0 0;margin:2px 8px -2px 0\9;_margin:0 8px 0 0;color:#999;}
+.listtag .tag:hover{color:#1696C4;}
+.listdate{float:left;margin-right:13px;padding-left:18px;background:url(../images/time.gif) 0 5px no-repeat;color:#999;}
+.listview{float:left;margin-left:85px;padding-left:24px;background:url(../images/view.gif) 0 5px no-repeat;color:#999;}
+.listcomment{float:left;margin-right:13px;padding-left:20px;background:url(../images/comment.gif) 0 5px no-repeat;color:#999;}
+.listdemo a{float:left;margin-top:0;margin-top:2px\9;_margin-top:0;color:#999;white-space:nowrap;}
+.listdemo a:hover{color:#2ad2bb;}
+/*中间底部*/
+.content-foot{border-top:1px solid #dbdad9;height:64px;}
+/*M任务中间部分*/
+.m-task{padding:15px 20px;background-color:#fff;}
+.m-task-search{position:relative;padding:40px 0 60px 100px;}
+.m-task-search .btn input{border:1px solid #b0b0b0;border-right:none;padding-left:85px;width:500px;height:65px;color:#b0b0b0;font-size:20px;background:url(../images/icon.png) no-repeat 22px -149px;line-height:65px;font-family:"微软雅黑";}
+.m-task-search .btn input:focus{border:1px solid #1696C4;border-right:none;outline:medium;}
+.m-task-search .btn .sea-color{font-size:30px;font-family:arial;color:#1696C4;background:url(../images/icon.png) no-repeat 22px -287px;transition:all 0.3s ease;-moz-transition:all 0.3s ease;-webkit-transition:all 0.3s ease;-o-transition:all 0.3s ease;-ms-transition:all 0.3s ease;}
+.m-task-search .btn button{height:69px;width:150px;border:none;background-color:#33424d;color:#fff;font-size:20px;font-family:"微软雅黑";}
+.m-task-search .btn button:hover{background-color:#5C7181;}
+.m-task-search .infor{position:absolute;right:0;bottom:0;padding:0 10px;background-color:#eeedeb;border-radius:5px 5px 0 0;line-height:25px;font-family:"宋体";}
+/*任务列表*/
+.m-task-list{border-top:1px solid #eeedeb;}
+.m-task-list li{margin-top:20px;border:1px solid #ebeae9;border-radius:5px;padding:15px;background-color:#f9f9f8;}
+.m-task-list li:nth-child(even){background-color:#fff;}
+.m-task-list li:hover{border:1px solid #2970a5;background-color:#f3f3f2;box-shadow:0px 1px 1px #ccc;}
+.m-task-list li .name{font-size:16px;color:#867f7f;}
+.m-task-list li .name .na{font-size:23px;color:#f08519;font-weight:500;font-family:arial;}
+.m-task-list li .text{margin-top:15px;}
+.m-task-list li .text textarea{overflow:hidden;border-radius:3px;padding:5px 1%;width:98%;height:70px;resize:none;line-height:20px;font-size:16px;font-family:arial;word-break:break-all;color:#bbdffc;background-color:#33424d;outline:none;}
+.m-task-list li .btn{padding-top:10px;}
+.m-task-list li .btn .im{float:left;height:25px;color:#2970a5;font-size:14px;font-family:'宋体';line-height:25px;}
+.m-task-list li .btn .im a{color:#ff8101;text-decoration:underline;line-height:40px;}
+.m-task-list li .btn .im a:hover{color:#a05810;}
+.m-task-list li .btn .bt .copy-btn,.m-task-list li .btn .bt .more-btn{display:block;float:right;border-radius:4px;padding:0 15px;height:40px;line-height:40px;color:#fff;font-size:14px;background-color:#1696C4;}
+.m-task-list li .btn .bt .more-btn{margin-left:30px;background-color:#ff8101;}
+.m-task-list li .btn .bt .copy-btn:hover{background-color:#0f4f7f;}
+.m-task-list li .btn .bt .more-btn:hover{background-color:#a05810;}
+
+/*新闻内容页*/
+.news-cont{padding:20px;}
+.news-cont-top{position:relative;border-radius:3px;padding:25px 15px;background-color:#e7f9ff;}
+.news-cont-top h2{font-size:23px;color:#0F4F7F;line-height:45px;}
+.news-cont-top .infor .time{position:absolute;bottom:8px;right:5px;font-size:12px;color:#dadada;}
+.news-cont-top .infor .time span{margin:0 10px;font-size:13px;color:#a29c9c;}
+.news-cont-top .infor .share{position:absolute;right:5px;top:5px;}
+.news-nei{margin-top:20px;}

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>{config.webname}</title>
+		<link href="<%templateskin%>/css/base.css" type="text/css" rel="stylesheet">
+		<link href="<%templateskin%>/css/mmm.css" type="text/css" rel="stylesheet">
+<link href="{config.webpath}css/pagination.css" rel="stylesheet" /> 
+		<script type="text/javascript" src="<%templateskin%>/js/jquery-1.8.0.min.js"></script>
+		<script type="text/javascript" src="<%templateskin%>/js/lrtk.js"></script>
+        
+<script type="text/javascript" charset="utf-8" src="<%templateskin%>/js/common.js"></script>
+	</head>
+	<body>
+        <!--Header-->
+        <%template src="_header.html"%>
+        <!--/Header-->
+		<div class="content ">
+			<div class="content-top layout">
+				<div class="content-top-tab layout">
+					<ul>
+						<li class="on"><a href="" title="全部">全部</a></li>
+                        <%set DataTable downCList=get_category_child_list("down",54)%>
+                        <%loop dcdr downCList%>
+                        <li><a href="<%linkurl("news_list",{dcdr[id]})%>" title="{dcdr[title]}">{dcdr[title]}</a></li>  
+                        <%/loop%> 
+					</ul>
+				</div>
+				<div class="content-top-search">
+                <input id="keywords" name="keywords" type="text" onclick="this.className='sea-color';this.value='';" onkeydown="if(event.keyCode==13){SiteSearch('<%linkurl("search")%>', '#keywords','down','54');return false};" value="输入回车搜索" x-webkit-speech="" />
+        <button class="submit" type="submit" onclick="SiteSearch('<%linkurl("search")%>', '#keywords','down','54');" >SEARCH</button>
+
+                <!--<input type="text" value="搜索" onclick="this.className='sea-color';this.value='';"><button>SEARCH</button>-->
+                </div>
+			</div>
+			<div class="content-con">
+				<div class="news-list layout">
+					<ul>
+                    <%set DataTable newsList=get_article_list("down", 54, 12, page, "status=0"," is_top desc,add_time desc", out totalcount, out pagelist, "index1", 54, "__id__")%><!--取得一个分页DataTable-->
+      <%foreach(DataRow dr in newsList.Rows)%>  
+					    <li class="listbox mr20">
+					      <div class="listimg"> <a href="<%linkurl("news_show",{dr[id]})%>" title="{dr[title]}" target="_blank"><img src="{dr[img_url]}" class="attachment-thumbnail wp-post-image" alt="{dr[title]}" /></a>
+					        <div class="summary">
+					          <div class="summarytxt">
+					            <p><%= DTcms.Common.Utils.CutString(DTcms.Common.Utils.DropHTML({dr[zhaiyao]}),70)%></p>
+					          </div>
+					        </div>
+					      </div>
+					      <div class="listinfo layout">
+					        <div class="listtitle"><a href="<%linkurl("news_show",{dr[id]})%>" title="{dr[title]}" target="_blank">{dr[title]}</a></div>
+					        <div class="listtag"><span class="tag">{dr[seo_title]}</span></div>
+					        <div class="listdate"><%datetostr({dr[add_time]},yyyy-MM-dd)%></div>
+					        <div class="listview">{dr[click]}</div>
+					      </div>
+					    </li>
+					   <%/foreach%>  
+				    </ul>
+				</div>
+			</div>
+			<div class="content-foot">
+				<div class="page">
+					<div class="digg">{pagelist}</div>
+				</div>
+			</div>
+		</div>
+		<!--content end-->
+		<!--Footer-->
+<%template src="_footer.html"%>
+<!--/Footer--> 
+		 
+	</body>
+</html>

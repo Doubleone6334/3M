@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<%set string category_title=get_category_title(model.category_id,"M新闻")%>
+<title>{model.title} - {category_title} - {config.webname}</title>
+<meta content="{model.seo_keywords}" name="keywords" />
+<meta content="{model.seo_description}" name="description" />
+<link href="<%templateskin%>/css/style.css" rel="stylesheet" type="text/css" />
+		<link href="<%templateskin%>/css/base.css" type="text/css" rel="stylesheet">
+		<link href="<%templateskin%>/css/mmm.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" charset="utf-8" src="{config.webpath}scripts/jquery/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="<%templateskin%>/js/common.js"></script>
+</head>
+
+<body>
+<!--Header-->
+<%template src="_header.html"%>
+<!--/Header-->
+
+<div class="content">
+			<div class="news-cont">
+				<div class="news-cont-top">
+                <%if({model.category_id}==52)%>
+					<h2 title="{model.title}任务教程">{model.title}任务教程</h2>
+                    <%else%>                    
+					<h2 title="{model.title}">{model.title}</h2>
+                    <%/if%>
+					<div class="infor layout">
+						<div class="time"><span>标签：{model.seo_title}</span>|<span>点击：<script type="text/javascript" src="{config.webpath}tools/submit_ajax.ashx?action=view_article_click&id={model.id}&click=1"></script></span>|<span>日期：<%datetostr({model.add_time},yyyy.MM.dd)%> </span></div>
+						<div class="share ">	
+							<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
+<script>    window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "<%= DTcms.Common.Utils.CutString({model.content},140)%>", "bdMini": "2", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {}, "image": { "viewList": ["qzone", "tsina", "tqq", "renren", "weixin"], "viewText": "分享到：", "viewSize": "16" }, "selectShare": { "bdContainerClass": null, "bdSelectMiniList": ["qzone", "tsina", "tqq", "renren", "weixin"]} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+						</div>
+					</div>
+				</div>
+				<!--新闻内容开始-->
+				<div class="news-nei">
+					{model.content}
+				</div>
+				<!--新闻内容结束-->
+			</div>
+		</div> 
+<!--Footer-->
+<%template src="_footer.html"%>
+<!--/Footer-->
+</body>
+</html>

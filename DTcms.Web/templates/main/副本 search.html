@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>站内搜索 - {config.webname}</title>
+<meta name="keywords" content="{site.seo_keyword}" />
+<meta name="description" content="{site.seo_description}" />
+<link href="{config.webpath}css/pagination.css" rel="stylesheet" /> 
+		<link href="<%templateskin%>/css/base.css" type="text/css" rel="stylesheet">
+		<link href="<%templateskin%>/css/mmm.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" charset="utf-8" src="{config.webpath}scripts/jquery/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="<%templateskin%>/js/common.js"></script>
+		<script type="text/javascript" src="<%templateskin%>/js/lrtk.js"></script>
+        <style>
+        .ntitle {
+    margin: 0 auto;
+    padding: 30px 0 0;
+    width: 100%;
+}
+.ntitle h2 {
+    display: inline-block;
+    float: left;
+    padding-right: 10px;
+    width: auto;
+    color: #333;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 25px;
+}
+.ntitle h2 a {
+    position: relative;
+    padding-right: 25px;
+    color: #888;
+}
+.ntitle i {
+    display: block;
+    padding-top: 10px;
+    color: #999;
+    font-size: 14px;
+    font-style: normal;
+    line-height: 1em;
+}
+.blue {
+    color: #1E7BB3;
+}
+.red {
+    color: #F00;
+}
+        </style>
+</head>
+
+<body>
+<!--Header-->
+<%template src="_header.html"%>
+<!--/Header-->
+<div class="content">
+ <!--取得一个DataTable-->
+    <%set DataTable list=get_search_list(15, out totalcount)%>
+    <!--取得分页页码列表-->
+    <%set pagelist=get_page_link(15, page, totalcount, linkurl("search","?channel=" + channel + "&category_id="+category_id+"&keyword=" + Server.UrlEncode(keyword) + "&page=__id__"))%>
+			<div class="m-task">
+				<div class="m-task-search" style="padding: 10px 0 30px 100px;">
+					<div class="btn"> 
+                    <input id="keywords" name="keywords" class="input" type="text" onclick="this.className='sea-color';this.value='';" onkeydown="if(event.keyCode==13){SiteSearch('<%linkurl("search")%>', '#keywords','down','52');return false};" value="搜索任务序列号，如：2915" x-webkit-speech="" /><button class="submit" type="submit" onclick="SiteSearch('<%linkurl("search")%>', '#keywords','down','52');" >搜  索</button>
+
+                    </div>
+					<div class="infor">链接为他人完成后的链接，您的任务答案链接可用他人的替代！</div>
+				</div>
+				<div class="m-task-list">
+					<ul>
+                    <%foreach(DataRow dr in list.Rows)%>
+                     <%if(category_id=="52")%> 
+						<li>
+							<div class="name">任务序号：<span class="na">{dr[title]}</span></div>
+							<div class="text"><textarea id="content1" readonly="readonly">{dr[job_url]}</textarea></div>
+							<div class="btn layout">
+                            <%set List<DTcms.Model.article_attach> article_attach=GetArticle_Attach({dr[id]})%> 
+                           <%if(article_attach!=null)%><div class="im">此任务要上传图片：
+      <%foreach(DTcms.Model.article_attach modelt in article_attach)%>
+								<a href="javascript:;" onclick="downLink(0,'{config.webpath}tools/download.ashx?site={site.build_path}&id={modelt.id}');" title="{modelt.file_name}">下载图片：{modelt.file_name}</a><%/foreach%></div><%/if%>
+								<div class="bt layout"><a href="{dr[link_url]}" class="more-btn" title="查看任务教程">查看任务教程</a><a href="javascript:;" class="copy-btn" onclick="jsCopy(1)" title="复制任务链接">复制任务链接</a></div>
+							</div>
+						</li> 
+                     <%else%> 
+						<li>
+							<div class="name"><span class="na">{dr[title]}</span></div>
+							<div class="text"><textarea id="Textarea1" readonly="readonly">{dr[remark]}</textarea></div> 
+                            <div class="btn layout"> 
+								<div class="bt layout"><a href="{dr[link_url]}" class="more-btn" title="查看新闻">查看新闻</a> </div>
+							</div>
+						</li> 
+                        <%/if%>
+                        <%/foreach%>
+                        <%if({totalcount}==0)%>
+      <div class="nodata">很抱歉，目前尚未查找到符合条件的信息！</div>
+      <%/if%>
+					</ul>
+				</div>
+			</div>
+			<div class="content-foot">
+				<div class="page">
+					<div class="digg">{pagelist}</div>
+				</div>
+			</div>
+		</div> 
+<!--Footer-->
+<%template src="_footer.html"%>
+<!--/Footer-->
+</body>
+</html>

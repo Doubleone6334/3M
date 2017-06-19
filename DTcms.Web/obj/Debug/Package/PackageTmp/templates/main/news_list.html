@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{model.title} - {config.webname}</title>
+<meta name="keywords" content="{model.seo_keywords}" />
+<meta name="description" content="{model.seo_description}" />
+<link href="{config.webpath}css/pagination.css" rel="stylesheet" /> 
+		<link href="<%templateskin%>/css/base.css" type="text/css" rel="stylesheet">
+		<link href="<%templateskin%>/css/mmm.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" charset="utf-8" src="{config.webpath}scripts/jquery/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="<%templateskin%>/js/common.js"></script>
+</head>
+
+<body>
+<!--Header-->
+<%template src="_header.html"%>
+<!--/Header-->
+
+<div class="content">
+			<div class="m-task">
+             <%set DataTable newsList=get_article_list("down", category_id, pagesize, page, "status=0"," is_top desc,add_time desc", out totalcount, out pagelist, "news_list", category_id, "__id__")%><!--取得一个分页DataTable-->
+             <%if(category_id==52)%> 
+				<div class="m-task-search">
+					<div class="btn">
+                   <!-- <input type="text" value="搜索任务序列号，如：2915" onclick="this.className='sea-color';this.value='';"><button>搜  索</button>-->
+                    <input id="keywords" name="keywords" class="input" type="text" onclick="this.className='sea-color';this.value='';" onkeydown="if(event.keyCode==13){SiteSearch('<%linkurl("search")%>', '#keywords','down','52');return false};" value="搜索任务序列号，如：2915" x-webkit-speech="" />
+        <button class="submit" type="submit" onclick="SiteSearch('<%linkurl("search")%>', '#keywords','down','52');" >搜  索</button>
+
+                    </div>
+					<div class="infor">链接为他人完成后的链接，您的任务答案链接可用他人的替代！</div>
+				</div>
+				<div class="m-task-list">
+                <%else%> 
+				<div class="m-task-list" style=" border-top:none;">
+                <%/if%>
+					<ul>
+                    <%foreach(DataRow dr in newsList.Rows)%>
+                     <%if(category_id==52)%> 
+						<li>
+							<div class="name">任务序号：<span class="na"><%if({dr[is_top]}=="1")%> <span style="color:Red">[置顶]</span><%/if%>{dr[title]}</span></div>
+							<div class="text"><textarea id="content1" readonly="readonly">{dr[link_url]}</textarea></div>
+							<div class="btn layout">
+                            <%set List<DTcms.Model.article_attach> article_attach=GetArticle_Attach({dr[id]})%>
+                            
+                           <%if(article_attach!=null)%><div class="im">此任务要上传图片：
+      <%foreach(DTcms.Model.article_attach modelt in article_attach)%>
+								<a href="javascript:;" onclick="downLink(0,'{config.webpath}tools/download.ashx?site={site.build_path}&id={modelt.id}');" title="{modelt.file_name}">下载图片：{modelt.file_name}</a><%/foreach%></div><%/if%>
+								<div class="bt layout"><a href="<%linkurl("news_show",{dr[id]})%>" class="more-btn" title="查看任务教程">查看任务教程</a><a href="javascript:;" class="copy-btn" onclick="jsCopy(1)" title="复制任务链接">复制任务链接</a></div>
+							</div>
+						</li> 
+                        <%else%> 
+                        <li>
+							<div class="name"><span class="na"><%if({dr[is_top]}=="1")%> <span style="color:Red">[置顶]</span><%/if%>{dr[title]}</span></div>
+							<div class="text"><textarea id="Textarea1" readonly="readonly">{dr[zhaiyao]}</textarea></div>
+							<div class="btn layout"> 
+								<div class="bt layout"><a href="<%linkurl("news_show",{dr[id]})%>" class="more-btn" title="查看新闻">查看新闻</a> </div>
+							</div>
+						</li> 
+                         <%/if%>
+      <%/foreach%>
+					</ul>
+				</div>
+			</div>
+			<div class="content-foot">
+				<div class="page">
+					<div class="digg">{pagelist}</div>
+				</div>
+			</div>
+		</div>
+         
+<!--Footer-->
+<%template src="_footer.html"%>
+<!--/Footer-->
+</body>
+</html>

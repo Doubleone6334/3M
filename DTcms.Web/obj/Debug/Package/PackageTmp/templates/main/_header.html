@@ -1,0 +1,76 @@
+﻿<div class="header">
+			<div class="mar-auto layout">
+				<h1><a href="<%linkurl("index")%>" title="<%=config.webname%>"><img src="<%templateskin%>/images/logo.png" title="<%=config.webname%>"></a></h1>
+				<div class="header-nav layout">
+					<a href="<%linkurl("index")%>" title="" class="on">家园首页</a>
+                    <%set DataTable downCList1=get_category_child_list("down",0)%>
+                        <%loop dcdr1 downCList1%>
+                        <%if({dcdr1[id]}!="55")%>
+                    <a href="<%linkurl("news_list",{dcdr1[id]})%>" title="{dcdr1[title]}">{dcdr1[title]}</a>
+                      <%/if%>
+                        <%/loop%> 
+				</div>
+			</div>
+		</div>
+		<!--header end-->
+		<div class="nav">
+			<div class="mar-auto layout">
+				<div class="date">
+					<span id="dateName"></span>
+				</div>
+				<div class="notice layout"><span class="font">公告：</span><marquee loop="-1" direction="right" scrollamount="2">
+                <%set DataTable focusNews=get_article_list("down", 55, 8, "status=0")%>
+          <%foreach(DataRow dr in focusNews.Rows)%>
+                <a href="<%linkurl("news_show",{dr[id]})%>">{dr[title]}<span class="time">[<%datetostr({dr[add_time]},yyyy-MM-dd)%>]</span></a>
+          <%/foreach%>
+
+                </marquee></div>
+			</div>
+		</div>
+
+
+<!-- <div class="header">
+  <div class="header-wrap">
+    <div class="section">
+      <div class="left-box">
+        <a class="logo" href="<%linkurl("index")%>">{site.name}</a>
+        <p class="nav">
+          <a href="<%linkurl("news")%>">资讯</a>
+          <a href="<%linkurl("goods")%>">商城</a>
+          <a href="<%linkurl("video")%>">视频</a>
+          <a href="<%linkurl("photo")%>">图片</a>
+          <a href="<%linkurl("down")%>">下载</a>
+        </p>
+      </div>
+      <div class="search">
+       <input id="keywords" name="keywords" class="input" type="text" onkeydown="if(event.keyCode==13){SiteSearch('<%linkurl("search")%>', '#keywords');return false};" placeholder="输入回车搜索" x-webkit-speech="" />
+        <input class="submit" type="submit" onclick="SiteSearch('<%linkurl("search")%>', '#keywords');" value="搜索" />
+      </div>
+      <div class="right-box">
+      <script type="text/javascript">
+			$.ajax({
+				type: "POST",
+				url: "{config.webpath}tools/submit_ajax.ashx?action=user_check_login",
+				dataType: "json",
+				timeout: 20000,
+				success: function (data, textStatus) {
+					if (data.status == 1) {
+						$("#menu").prepend('<li class="line"><a href="<%linkurl("usercenter","exit")%>">退出</a></li>');
+						$("#menu").prepend('<li class="login"><em></em><a href="<%linkurl("usercenter","index")%>">会员中心</a></li>');
+					} else {
+						$("#menu").prepend('<li class="line"><a href="<%linkurl("register")%>">注册</a></li>');
+						$("#menu").prepend('<li class="login"><em></em><a href="<%linkurl("login")%>">登录</a></li>');
+					}
+				}
+			});
+		</script>
+        <ul id="menu">
+          <li>
+            <a href="<%linkurl("cart")%>">购物车<span id="shoppingCartCount"><script type="text/javascript" src="{config.webpath}tools/submit_ajax.ashx?action=view_cart_count"></script></span>件</a>
+          </li>
+          <li><a href="<%linkurl("content","contact")%>">联系我们</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>-->
